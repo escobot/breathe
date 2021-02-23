@@ -1,4 +1,4 @@
-The Breathe Life insurance company would like to build a new system that will enable it to underwrite term life insurance policies for potential customers in realtime.
+The insurance company would like to build a new system that will enable it to underwrite term life insurance policies for potential customers in realtime.
 
 You have been hired to build this system.
 
