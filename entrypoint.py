@@ -13,6 +13,7 @@ def calculate_premium_rate(gender, age, smoker):
         return 0.30
     if gender and 40 <= age <= 60 and smoker == 'S':
         return 0.55
+    return 0
 
 
 def calculate_debits(health, smoker, alcohol, bmi):
@@ -22,7 +23,7 @@ def calculate_debits(health, smoker, alcohol, bmi):
         debit += 15
     if 'ANXIETY' in health:
         debit += 15
-    if bmi < 18.5:
+    if 0 < bmi < 18.5:
         debit += 15
     # 25 point debit
     if 'SURGERY' in health:
@@ -46,7 +47,10 @@ def calculate_debits(health, smoker, alcohol, bmi):
 def main():
     results = pd.DataFrame(columns=["name", "BMI", "score", "monthly premium"])
 
+    print("Reading input.csv file")
     df = pd.read_csv('input.csv')
+
+    print("Analyzing input.csv file")
     for index, row in df.iterrows():
         name = row["name"]
         gender = row["gender"]
@@ -70,7 +74,9 @@ def main():
 
         results.loc[len(results)] = [name, bmi, debits, monthly_premium]
 
+    print("Generating output.csv file")
     results.to_csv('output.csv', index=False)
+    print("DONE")
 
 if __name__ == "__main__":
     main()
